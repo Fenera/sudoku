@@ -9,7 +9,7 @@ font = pygame.font.SysFont("arialblack", 45)
 
 WIDTH = 1000
 backgroundColor = (255, 255, 255)
-# 1
+
 Window = pygame.display.set_mode((WIDTH, WIDTH)  )  # 2
 pygame.display.set_caption("Sudoku"  )  # 3
 lineWidth = 3
@@ -17,7 +17,7 @@ orig_grid_color = (150, 240, 25)
 running = True
 buffer = 1
 
-# Default Board #1
+#Default Board #1
 grid1 = [
     [5, 6, 0, 0, 8, 0, 4, 3, 7],
     [8, 0, 0, 6, 0, 0, 0, 0, 0],
@@ -40,16 +40,16 @@ def insert(win, position):
             if event.type == pygame.QUIT:
                 return
             if event.type == pygame.KEYDOWN:
-                # 1. User tries to edit original file
+                #1. User tries to edit original file
                 if(original_grid[i-1][j-1] != 0):
                     return
-                # 2. Edit
+                #2. Edit
                 if(event.key == 48): #Checking w/ 0
                     grid1[i-1][j-1] = event.key - 48
                     #Adds a new layer on top of existing number when user edits
                     pygame.draw.rect(win, backgroundColor, (position[0] * 91 + buffer, position[1] * 91 + buffer, 91 - buffer, 91 - buffer))
                     pygame.display.update()
-                # 3 Adding the digits
+                #3. Adding the digits
                 if(0 < event.key - 48 < 10): #Checking for valid input
                         pygame.draw.rect(win, backgroundColor, (
                         position[0] * 91 + buffer, position[1] * 91 + buffer, 91 - buffer, 91 - buffer))
@@ -80,7 +80,7 @@ def main():
         pygame.draw.line(Window, (0 ,0 ,0), (91, 91 + 91 * i), (910, 91 + 91 * i), lineWidth)  # HORIZONTAL LINE
     pygame.display.update()
 
-    # Fill in the board
+    #Fill in the board
     for i in range(0, len(grid1[0])):
         for j in range(0, len(grid1[0])):
             if(0 < grid1[i][j] < 10):
