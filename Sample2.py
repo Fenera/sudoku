@@ -20,7 +20,7 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 white = (255, 255, 255)
-black = (255, 255, 255)
+black = (0, 0, 0)
 
 #initialize a font
 font = pygame.font.SysFont("Arial", 30)
@@ -48,12 +48,9 @@ def draw_board(grid):
 
     width_of_line = 3
     for i in range(0, 600, 60):
-        if i % 3 == 0: #Makes the lines thicker when 3x3
-            width_of_line = 6
-        else:
-            width_of_line = 3
-        pygame.draw.line(window, black, (0, i), (500, i), width_of_line) #Horizontal Line
-        pygame.draw.line(window, black, (i, 0), (i, 500), width_of_line) #Vertical line
+
+        pygame.draw.line(window, black, (0, i), (540, i), width_of_line) #Horizontal Line
+        pygame.draw.line(window, black, (i, 0), (i, 540), width_of_line) #Vertical line
 
     #Draw the numbers in the cells
     for i in range(9):
@@ -68,7 +65,7 @@ def draw_board(grid):
 def get_cell(pos):
     (x, y) = pos
 
-    #returns row(as an integer) //60 because the row can only be 0 - 600 and each cell is 60 by60
+    #returns row(as an integer) //60 because the row can only be 0 - 600 and each cell is 60 by 60
     row = y // 60
     col = x // 60
 
@@ -85,13 +82,13 @@ while run:
             run = False
 
         #checks if user pressed their mouse(left key) and gets the position of the cell clicked
-        if event.type == pygame.MOUSEBUTTONDOWN and event.BUTTON == 1: #checks if user pressed left mouse key(1 denotes left key, 2 right..)
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: #checks if user pressed left mouse key(1 denotes left key, 2 right..)
             cell_clicked = get_cell(event.pos)
 
         #Gets the number the user enters when they press a button on their keyboard & checks if it is a valid value
         if event.type == pygame.KEYDOWN:
             if cell_clicked and event.unicode.isdigit() and 0 < int(event.unicode) < 10: #is the value a digit & is it 1 - 9
-                row, col = cell_clicked
+                row, col = cell_clicked #sets the row and column to the cell that was clicked
                 board1[row][col] = int(event.unicode)
                 cell_clicked = None #Resets the value of the cell clicked so it can be reused
 
@@ -101,16 +98,3 @@ while run:
 
 #Quits if run = False
 pygame.quit()
-
-
-
-
-
-
-
-
-
-
-
-
-
