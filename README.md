@@ -1,3 +1,33 @@
+STEPS:
+
+# Initialize Pygame C
+# Set the window size C
+# Create the window C
+# Set the title of the window C
+# Define colors C
+# Define the sudoku board(board1) 
+	# Draw the sudoku board(create a function)  C
+ 	# Draw the grid lines(horizontal & vertical) C
+ 	# Draw the numbers on the board 
+# Get the cell that was clicked(New function)
+#Create a function that highlights the cell clicked
+#Color(red or green) if in correct location
+# Run the game loop
+# Quit Pygame
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Testing(To be continued)
 
 import pygame
