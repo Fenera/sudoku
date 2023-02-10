@@ -1,4 +1,5 @@
 #by Fenera Taye
+#Edit1 2/9/23 --> Visual Customization edits
 
 import pygame
 pygame.init()
@@ -21,6 +22,9 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 white = (255, 255, 255)
 black = (0, 0, 0)
+modern1 = (231, 230, 230)
+modern2 = (93, 142, 193)
+modern3 = (14, 52, 91)
 
 #initialize a font
 font = pygame.font.SysFont("Arial", 30)
@@ -41,19 +45,21 @@ board1 = [
 def draw_board(grid):
 
     #changes the background color of window
-    window.fill(white)
+    window.fill(modern1)
 
     #Draw the horizontal and vertical lines(respectively)
     #Parameters: line(surface, color, start_pos, end_pos, thickness of line)
 
-    width_of_line = 2
+
     for i in range(100, 600, 50):
         if i % 150 == 100:
             width_of_line = 6
+            color_of_lines = modern3
         else:
             width_of_line = 2
-        pygame.draw.line(window, black, (100, i), (550, i), width_of_line) #Horizontal Line
-        pygame.draw.line(window, black, (i, 100), (i, 550), width_of_line) #Vertical line
+            color_of_lines = modern2
+        pygame.draw.line(window, color_of_lines, (100, i), (550, i), width_of_line) #Horizontal Line
+        pygame.draw.line(window, color_of_lines, (i, 100), (i, 550), width_of_line) #Vertical line
 
     #Draw the numbers in the cells
     for i in range(9):
@@ -93,6 +99,7 @@ while run:
             if cell_clicked and event.unicode.isdigit() and 0 < int(event.unicode) < 10: #is the value a digit & is it 1 - 9
                 row, col = cell_clicked #sets the row and column to the cell that was clicked
                 board1[row][col] = int(event.unicode)
+
                 cell_clicked = None #Resets the value of the cell clicked so it can be reused
 
     draw_board(board1) #calls function made earlier
