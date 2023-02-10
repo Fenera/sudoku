@@ -1,5 +1,4 @@
 #by Fenera Taye
-#Edit1 2/9/23 --> Visual Customization edits
 
 import pygame
 pygame.init()
@@ -49,8 +48,6 @@ def draw_board(grid):
 
     #Draw the horizontal and vertical lines(respectively)
     #Parameters: line(surface, color, start_pos, end_pos, thickness of line)
-
-
     for i in range(100, 600, 50):
         if i % 150 == 100:
             width_of_line = 6
@@ -80,6 +77,14 @@ def get_cell(pos):
 
     return (row, col)
 
+#A function that highlights the borders of the cell the user clicks
+def highlight_cell_clicked(cell_clicked):
+    if cell_clicked: #. If selected is false (e.g. None), else true if it has a real value
+        row, col = cell_clicked
+        #draws a rectangle around cell clicked
+        #Parameters(surface, color, (location(x, y) and dimensions(l = 50, h = 50), width of the line)
+        pygame.draw.rect(window, red, (col*50+100, row*50+100, 50, 50), 3)
+
 
 run = True
 cell_clicked = None #initializes the cell clicked to empty
@@ -94,9 +99,11 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: #checks if user pressed left mouse key(1 denotes left key, 2 right..)
             cell_clicked = get_cell(event.pos)
 
+
         #Gets the number the user enters when they press a button on their keyboard & checks if it is a valid value
         if event.type == pygame.KEYDOWN:
             if cell_clicked and event.unicode.isdigit() and 0 < int(event.unicode) < 10: #is the value a digit & is it 1 - 9
+                highlight_cell_clicked(cell_clicked)
                 row, col = cell_clicked #sets the row and column to the cell that was clicked
                 board1[row][col] = int(event.unicode)
 
