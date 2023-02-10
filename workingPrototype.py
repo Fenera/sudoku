@@ -5,8 +5,8 @@ pygame.init()
 pygame.font.init()
 
 #Dimension of the window
-length = 600
-height = 600
+length = 700
+height = 700
 
 
 #Create a window
@@ -46,11 +46,14 @@ def draw_board(grid):
     #Draw the horizontal and vertical lines(respectively)
     #Parameters: line(surface, color, start_pos, end_pos, thickness of line)
 
-    width_of_line = 3
-    for i in range(0, 600, 60):
-
-        pygame.draw.line(window, black, (0, i), (540, i), width_of_line) #Horizontal Line
-        pygame.draw.line(window, black, (i, 0), (i, 540), width_of_line) #Vertical line
+    width_of_line = 2
+    for i in range(100, 600, 50):
+        if i % 150 == 100:
+            width_of_line = 6
+        else:
+            width_of_line = 2
+        pygame.draw.line(window, black, (100, i), (550, i), width_of_line) #Horizontal Line
+        pygame.draw.line(window, black, (i, 100), (i, 550), width_of_line) #Vertical line
 
     #Draw the numbers in the cells
     for i in range(9):
@@ -59,15 +62,15 @@ def draw_board(grid):
                 #render(text, antialias(T or F), color, background=None) -> Surface AKA creating the text
                 number = font.render(str(board1[i][j]), True, black)
                 #Places number above on screen
-                window.blit(number, (j * 60 + 20, i * 60 + 10)) #blit(text, location)
+                window.blit(number, (j * 50 + 120, i * 50 + 110)) #blit(text, location)
 
 #A function that looks for the position of the cell clicked by the user's mouse and returns it as (Row, Col)
 def get_cell(pos):
     (x, y) = pos
 
     #returns row(as an integer) //60 because the row can only be 0 - 600 and each cell is 60 by 60
-    row = y // 60
-    col = x // 60
+    row = (y - 100) // 50
+    col = (x - 100) // 50
 
     return (row, col)
 
