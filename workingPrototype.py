@@ -1,5 +1,9 @@
 #by Fenera Taye
 
+#1 from questions import quiz(quiz being the dictionary that stores the questions and their corresponding answers)
+#2 use for i in quiz to access individual questions(for-each loop)
+#3
+
 import pygame
 pygame.init()
 pygame.font.init()
